@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "4c7dbd48-67ca-46f0-96e7-74d15affdd25",
+		"name": "Laratest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"avinash Mishra\",\n\t\"email\": \"avinash.mishra@live.in\",\n\t\"password\": \"123456\",\n\t\"password_confirmation\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"avinash.mishra@live.in\",\n\t\"password\": \"admin@12345\",\n\t\"remember_me\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYWQ2MDg2YzRjNjJjZWU2NDk5MDQwYTVmMTBkM2E4MjcwMWE1MTU2ZTQxYTUzNWQ0YjExNWRkNDUwNGFhOTZkMzBlNzA0Yjk1YTY0MzlmODMiLCJpYXQiOjE2MDI5MjIxODMsIm5iZiI6MTYwMjkyMjE4MywiZXhwIjoxNjE4NjQ2OTgyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.a0E5NVC4TU6e-QGzOTTEz1eCDm8HzkoXdnE2cYMwT8caspk8Y0Ckj0PdrtFxamsIma5Kkc7WmuKN3BzvVo4pm9Y71R6cNUAdYuYVN2iPY9r4m11BB9VDfXyvw-AvGOix0e_5HBeS9BQWIEB4YABg0lLAdkQ2KP0-6pOEIoHkRIaIBVoJQ8W9RC0jhNFZPMARv2Hay5DulY19KdQ_Jikr6yWoeMIDZaThCqDO_IATfka5mGcOc8zR2V1NIzY263aav1nvYZky11qMfy8784hGwQa5DLncPep7l-kWGI7jureFYkHl44Zf0Bx4Gd_iq2TU526o5xGxF-4-C33TMuyUQ10QyRb7yXhMHUfKnWWjDcFaAr0P79hkN17n9pb8QP9W6kvXcNm4snaSGH64VKGF7RLAOTiZfSx9ksPzn5lkccUXEzWG4bNX0d8grMdrAcJIa37i9f1HQO-eAcaa_RFpP9swJjOm2OrIcBBg6SkVIkJzJ2i8dF28vQdRSjAbMIyxlgvJRdd_PQDenr0lP3V3MElSolNfc883gtiG5EAbZXRyol-3YkQ-8MqN9fZDFhx_fmDLnPX5HlkrBB0V3crJsXdmKGGwY4V9jPck77BAc0JmrajDBQIIPvn0m7Y5zXzFIOFPSqsbHFJ23Okkj0fOpGsbAIRpXpT0yxQogofmD8o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGRhMTY3NGMyMTAzYjRmYjdkZmUzOTU5YjljMzU5ZmY0NzY0OGYwM2IzNDMzYTQ0OWM5NGQ5ZjA1ZTZiYWEyZGM1YmRjMWI2M2VlMTBkYTgiLCJpYXQiOjE2MDI5MjIzMTgsIm5iZiI6MTYwMjkyMjMxOCwiZXhwIjoxNjE4NjQ3MTE3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.PLK1HULlqAhgmmv01pmJC6oNtwI-HxvcGKaDIUxIdrPtsPcc_xtBzYi2WP2m6XGViB6r7QkP7_-2L9iDpk-6GBarLkL_77dFYSzuKK5YqVp_1r7QH9yfkW0VfiA1hsqOBCoSW6Ka04CQXkS4il8bvGVIvUGqiF3DUsklILw3scaZm9E7waaP9dcDGY65GKy3PsVVhlGK5SDTu7-DCmYM9v9sxNF7zwRayn5cbHCe8UjtuBJhtQObBieJqzQLA675usfViB6UtrG_NtCK1r7GvQLlGGJDh7D9dfBmoOa-OulYd4lGw3n20QYunIyKSQAvDowcHioqA9deoxBupiIrMX3Lq2enkHSRsFkor0hiEJ0NoTd9Efa3Jkrx6ZruqMHqiCrCQX1Bwe89pA5MqsmEg7cZFTSViP1n4PKDTOxPbH8JCl9Na2QTdJNN451VVTLrBDcz71uABi1g7udTM6aNyVjiptqpFhofdhKv62oRtOWx7KDmxyIQN_n64k7nyrROI1GsdPZH79Gatrk360-kbSR7uKG7qOepWCGW20oAayXpcCdJcvZX4UyXP4bBpxfw7HHdbG5-e0cqJZuaTJhJXozgOGFx484DWlq6FvME_yIuwdqe4o54urloH3mtcGCOnYssKXoaQXm61B0-U6VUbSpdLuSM4Up32WmbATD7bgs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-games",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGI5ZTRhOTIzOGEyZTk4NTBmOWNiNGM0ODBmNDI2MmU5Nzk0MGU5NTBiNjIxMDAwMjQyZThmMzgxYzVjNzZkZTZlZDVkMjg0MzhjY2I5MzYiLCJpYXQiOjE2MDI5MzU5NTMsIm5iZiI6MTYwMjkzNTk1MywiZXhwIjoxNjE4NjYwNzUzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mn4pMw5IkTwsSbChkFTKRuIzC1QOSwOXHm120HU1ar0M62On5L6qkGVwhyQ2qEMpMx73eAxcDlUwvLGYQ13_ybO3NtDqdeFo3zYX4Bw-mCQWjWrIaXppnnc3ZGs44c-Yjm4jD4KsffflvWP6nk3e5gfSj_-s2IuFYXlP_chgdBs8SUqkxBFsaz90slKk4WqPyVTCcm_r7iXzZuwjb-e968ONx9ZNUunYQeI3pJcwPzMK54hTilhLdu42VFCAoVFy7hzV64NkfDTh0HhF1Pi2HqF6K03x_u8FvG83TSxEJEdWDh-_pTtRVHPKFsbQIkDiGwrq17Umx9C_LCg6kB4yxZHvfiF3bVL56zHknz-kLNRHC50-Jy9mUciH1T7m517U9sXAH-fl4ZxAqXSZ8PUar_cMIGuwhYyfNuLkn16v8fWqWsdu089xOOvaJrrym6qEeHm5xWN8N4KBXPBzwAKXD1l3jx0mC-vqSEfSDBjKMjNhBPeVYBhUAItpMBpF5CeWBDWijbLAjBANq9AffQIA6i5ASFFvZB68lS4ib9KVUeukW5DfGVz_acAjDrztoogjupexNlLHZgKYTbEplVYnYMCfu98qsPiWbij4obyIEWKuhzGGet9RNawLcJspjhMSlkWLe7Lc_ECUfUn85ei40odBBHbGyZxG0qwsqgBuuq0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/list-games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"list-games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzIxZTEwZGIzMzQzOWU0YTM5NzNhOTE3NGMyM2RjNjk5MDg1YzZhZjMyMGE2MmU3NzIwODA5MjFmY2JiYjhlNWZhNTRlMWZmYmE3OTViYzgiLCJpYXQiOjE2MDI5Mzc3NjIsIm5iZiI6MTYwMjkzNzc2MiwiZXhwIjoxNjE4NjYyNTYyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.hWxllgZuZwNA_D140pLUBKJ8rTYPUDLb-VjfTMn88SlE0NLlrizDMZjVAY-39XB9IAesFY_YZE2-JlnDWa4ezDrkgMTTPQv1FRdyjB4Q9dYp4A0UvjNuoTW_dsHSOKZB6JBmKh1VVg_v6oTg4SITMlG3TFfRKyKkGx3HpQdYJvVqPippm8Zj6gIasrKLnhUeDQumdjvRZex7M70LpjG7ni5KRNHM5EUz9fooEFett_Zlg01u0RsRP2e9UgIT_37-V6BgWQOfJeUyyJhTh7xhTUZGDXR-C2ZM27xki3j7hAYT6bscpCDBaqcGW1ImeJPbcxKu-QQuFgXcsKe_0UHEPDOAXe_UYlkQF2jgemSHvP120QZ3RA46-HXg8aYeOzHQKYMmSKqO70hzzM82FXWgomJvjq5eIMFgStILL0XGOjZH4xk-WzxKdGSitU79UoeAb4_2b-1O8zHL0kuW9YM0aNS-1y1_nK8y4caY8rbG_LJEiAGErvM0DUct0gdsBLWDNHg4aKApzj9PIFX8kJnu-pDfcQF6VH0HpyKqdFOcCIvTmiG4BTLXFo1Qz0qQuKLXXrtYBEfbQPTQp4ATUp9IuwUIRbHWsdxr_pm6Az5UiI1QqeCxYKBy3BHsKpbVoKhWVdaJ0Z9owYLr-peFYHfDr_ihArchD3H0HXObsLwa6F8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"result\": \"tied\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/add-game",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"add-game"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PasswordReset",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"avinash.mishra@live.in\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/password/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"password",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/password/find/ioDrrybWRf4yXRuWszygAGtvQN0w9Z48QlpJSGR1WqW1M4RZOx5RiSpnyDv4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"password",
+								"find",
+								"ioDrrybWRf4yXRuWszygAGtvQN0w9Z48QlpJSGR1WqW1M4RZOx5RiSpnyDv4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"aviansh.mishra@live.in\",\n\t\"password\": \"secret\",\n\t\"password_confirmation\": \"secret\",\n\t\"token\": \"ioDrrybWRf4yXRuWszygAGtvQN0w9Z48QlpJSGR1WqW1M4RZOx5RiSpnyDv4\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/password/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fce227a0-2add-451f-a1ae-980a5f65b38f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d118af37-6a60-41d0-a589-5850d64b0f0d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
