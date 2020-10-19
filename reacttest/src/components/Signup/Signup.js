@@ -31,7 +31,7 @@ export default class Signup extends Component {
     e.preventDefault();
     this.setState({ isLoading: true });
     axios
-      .post("http://localhost:8100/api/auth/signup", this.state.signupData)
+      .post("http://localhost:8000/api/auth/signup", this.state.signupData)
       .then((response) => {
         this.setState({ isLoading: false });
         console.log(response);

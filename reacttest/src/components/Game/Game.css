@@ -4,10 +4,17 @@ html,
 body {
   font-family: "Montserrat", sans-serif;
 }
+.row {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.progress {
+  height: 40px;
+}
 
 .progress-bar {
   position: relative;
-  height: 20px;
+  height: 40px;
   width: 350px;
   border-radius: 50px;
   border: 1px solid #333;

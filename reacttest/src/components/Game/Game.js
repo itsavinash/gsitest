@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Progress } from "reactstrap";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./Game.css";
-
+import axios from "axios";
 const MAX_VAlUE = 100;
 
 export default class Game extends Component {
@@ -12,20 +11,19 @@ export default class Game extends Component {
   powAttackmin = 10;
   powAttackmax = 30;
   healMin = 20;
-  healMax = 80;
+  healMax = 40;
   finalResult = 0;
   result = 0;
   constructor() {
     super();
     this.userData = JSON.parse(localStorage.getItem("userData"));
-    console.log(this.userData);
     this.state = {
       maxPlayerScore: MAX_VAlUE,
       playerScore: MAX_VAlUE,
       maxDragonScore: MAX_VAlUE,
       dragonScore: MAX_VAlUE,
       surrender: 0,
-      comment: "Game Started.",
+      comment: ["Game Started."],
       result: 0,
       isLoading: false,
       redirect: false,
@@ -35,16 +33,14 @@ export default class Game extends Component {
 
   postgameResult() {
     this.setState({ isLoading: true });
-    console.log(this.state);
     setTimeout(function () {}, 3000);
-    console.log(this.state);
     const config = {
       headers: { Authorization: `Bearer ${this.userData.access_token}` },
     };
 
     axios
       .post(
-        "http://localhost:8100/api/auth/add-game",
+        "/api/auth/add-game",
         {
           result: this.result,
         },
@@ -75,8 +71,12 @@ export default class Game extends Component {
       this.state.finalResult === 0
     ) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Tied";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Tied",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 0,
         };
@@ -87,8 +87,12 @@ export default class Game extends Component {
       return;
     } else if (this.state.dragonScore <= 0 && this.state.finalResult === 0) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Won";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Won",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 1,
         };
@@ -99,8 +103,12 @@ export default class Game extends Component {
       return;
     } else if (this.state.playerScore <= 0) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Lost";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Lost",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 2,
         };
@@ -127,32 +135,37 @@ export default class Game extends Component {
       };
     });
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "Dragon Attack the [" +
+        this.userData.user.name +
+        "]" +
+        state.playerScore +
+        ".";
       return {
-        comment:
-          state.comment +
-          " Dragon Attack the [" +
-          this.userData.user.name +
-          "] " +
-          state.playerScore +
-          ".",
+        comment: state.comment.concat(comment),
       };
     });
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "[" +
+        this.userData.user.name +
+        "]" +
+        " Attack the Dragon " +
+        state.dragonScore +
+        ".";
       return {
-        comment:
-          state.comment +
-          "[" +
-          this.userData.user.name +
-          "]" +
-          " Attack the Dragon " +
-          state.dragonScore +
-          ".",
+        comment: state.comment.concat(comment),
       };
     });
   }
 
   powAttack(e) {
-    console.log(this.state);
     if (this.state.finalResult === 1) {
       return;
     }
@@ -161,10 +174,13 @@ export default class Game extends Component {
       this.state.playerScore <= 0 &&
       this.state.finalResult === 0
     ) {
-      console.log("a");
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Tied";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Tied",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 0,
         };
@@ -174,10 +190,13 @@ export default class Game extends Component {
       this.postgameResult();
       return;
     } else if (this.state.dragonScore <= 0 && this.state.finalResult === 0) {
-      console.log("b");
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Won";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Won",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 1,
         };
@@ -187,10 +206,13 @@ export default class Game extends Component {
       this.postgameResult();
       return;
     } else if (this.state.playerScore <= 0) {
-      console.log("c");
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Lost";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Lost",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 2,
         };
@@ -217,26 +239,32 @@ export default class Game extends Component {
       };
     });
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "Dragon Attack the [" +
+        this.userData.user.name +
+        "]" +
+        state.playerScore +
+        ".";
       return {
-        comment:
-          state.comment +
-          " Dragon Attack the [" +
-          this.userData.user.name +
-          "] " +
-          state.playerScore +
-          ".",
+        comment: state.comment.concat(comment),
       };
     });
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "[" +
+        this.userData.user.name +
+        "]" +
+        " Attack the Dragon " +
+        state.dragonScore +
+        ".";
       return {
-        comment:
-          state.comment +
-          "[" +
-          this.userData.user.name +
-          "]" +
-          " Attack the Dragon " +
-          state.dragonScore +
-          ".",
+        comment: state.comment.concat(comment),
       };
     });
   }
@@ -245,10 +273,18 @@ export default class Game extends Component {
     if (this.state.finalResult === 1) {
       return;
     }
-    if (this.state.dragonScore <= 0 && this.state.playerScore <= 0) {
+    if (
+      this.state.dragonScore <= 0 &&
+      this.state.playerScore <= 0 &&
+      this.state.finalResult === 0
+    ) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Tied";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Tied",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 0,
         };
@@ -259,8 +295,12 @@ export default class Game extends Component {
       return;
     } else if (this.state.dragonScore <= 0 && this.state.finalResult === 0) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Won";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Won",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 1,
         };
@@ -271,8 +311,12 @@ export default class Game extends Component {
       return;
     } else if (this.state.playerScore <= 0) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Lost";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Lost",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 2,
         };
@@ -286,35 +330,31 @@ export default class Game extends Component {
       return;
     }
     this.setState((state) => {
-      if (
-        state.playerScore +
-          parseInt(
-            this.healMin + Math.random() * (this.healMax - this.healMin),
-            10
-          ) >
-        100
-      ) {
+      const tmpHealth = parseInt(
+        this.healMin + Math.random() * (this.healMax - this.healMin),
+        10
+      );
+      if (state.playerScore + tmpHealth >= 100) {
         return { playerScore: 100 };
+      } else {
+        return {
+          playerScore: parseInt(state.playerScore + tmpHealth, 10),
+        };
       }
-      return {
-        playerScore: this.randGen(
-          state.playerScore,
-          "+",
-          this.healMin,
-          this.healMax
-        ),
-      };
     });
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "[" +
+        this.userData.user.name +
+        "]" +
+        " Healed by " +
+        state.playerScore +
+        ".";
       return {
-        comment:
-          state.comment +
-          "[" +
-          this.userData.user.name +
-          "]" +
-          " Healed by " +
-          state.playerScore +
-          ".",
+        comment: state.comment.concat(comment),
       };
     });
     this.setState((state) => {
@@ -328,15 +368,18 @@ export default class Game extends Component {
       };
     });
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "[" +
+        this.userData.user.name +
+        "]" +
+        " Infected by Dragon " +
+        state.playerScore +
+        ".";
       return {
-        comment:
-          state.comment +
-          "[" +
-          this.userData.user.name +
-          "]" +
-          " Infected by Dragon " +
-          state.dragonScore +
-          ".",
+        comment: state.comment.concat(comment),
       };
     });
   }
@@ -345,10 +388,18 @@ export default class Game extends Component {
     if (this.state.finalResult === 1) {
       return;
     }
-    if (this.state.dragonScore <= 0 && this.state.playerScore <= 0) {
+    if (
+      this.state.dragonScore <= 0 &&
+      this.state.playerScore <= 0 &&
+      this.state.finalResult === 0
+    ) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Tied";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Tied",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 0,
         };
@@ -359,35 +410,62 @@ export default class Game extends Component {
       return;
     } else if (this.state.dragonScore <= 0 && this.state.finalResult === 0) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Won";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Won",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 1,
         };
       });
       this.finalResult = 1;
-      this.result = 0;
+      this.result = 1;
       this.postgameResult();
       return;
     } else if (this.state.playerScore <= 0) {
       this.setState((state) => {
+        if (state.comment.length > 10) {
+          state.comment.shift();
+        }
+        const comment = "[" + this.userData.user.name + "] Lost";
         return {
-          comment: state.comment + "[" + this.userData.user.name + "] Lost",
+          comment: state.comment.concat(comment),
           finalResult: 1,
           result: 2,
         };
       });
       this.finalResult = 1;
-      this.result = 0;
+      this.result = 2;
       this.postgameResult();
       return;
     }
     this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment =
+        "Dragon Attack the [" +
+        this.userData.user.name +
+        "]" +
+        state.playerScore +
+        ".";
+      return {
+        comment: state.comment.concat(comment),
+      };
+    });
+
+    this.setState((state) => {
+      if (state.comment.length > 10) {
+        state.comment.shift();
+      }
+      const comment = "[" + this.userData.user.name + "] Lost";
       return {
         surrender: 1,
         finalResult: 1,
         result: 2,
-        comment: state.comment + "[" + this.userData.user.name + "] Lost",
+        comment: state.comment.concat(comment),
       };
     });
     this.finalResult = 1;
@@ -397,7 +475,6 @@ export default class Game extends Component {
   }
 
   randGen(score, operator, min, max) {
-    console.log(score, operator, min, max);
     if (operator === "-") {
       let data = score - parseInt(min + Math.random() * (max - min), 10);
       if (data <= 0) {
@@ -420,36 +497,44 @@ export default class Game extends Component {
       return <Redirect to="/home" />;
     }
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <h3 className="text-center">Dragon Health</h3>
-            <div className="progress">
-              <Progress
-                className="progress-bar progress-bar-striped progress-bar-animated"
-                animated
-                color="danger"
-                min={0}
-                max={this.state.maxDragonScore}
-                value={this.state.dragonScore}
-              >
-                {this.state.dragonScore + "%"}
-              </Progress>
+            <div className="row">
+              <h3 className="text-center">Dragon Health</h3>
+            </div>
+            <div className="row">
+              <div className="progress">
+                <Progress
+                  className="progress-bar progress-bar-striped progress-bar-animated"
+                  animated
+                  color="danger"
+                  min={0}
+                  max={this.state.maxDragonScore}
+                  value={this.state.dragonScore}
+                >
+                  {this.state.dragonScore + "%"}
+                </Progress>
+              </div>
             </div>
           </div>
           <div className="col-md-6">
-            <h3 className="text-center">Player Health</h3>
-            <div className="progress">
-              <Progress
-                className="progress-bar progress-bar-striped progress-bar-animated"
-                animated
-                color="success"
-                min={0}
-                max={this.state.maxPlayerScore}
-                value={this.state.playerScore}
-              >
-                {this.state.playerScore + "%"}
-              </Progress>
+            <div className="row">
+              <h3 className="text-center">Player Health</h3>
+            </div>
+            <div className="row">
+              <div className="progress">
+                <Progress
+                  className="progress-bar progress-bar-striped progress-bar-animated"
+                  animated
+                  color="success"
+                  min={0}
+                  max={this.state.maxPlayerScore}
+                  value={this.state.playerScore}
+                >
+                  {this.state.playerScore + "%"}
+                </Progress>
+              </div>
             </div>
           </div>
         </div>
@@ -497,7 +582,11 @@ export default class Game extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <p className="text-center text-danger lead">{this.state.comment}</p>
+            {this.state.comment.map((item) => (
+              <p key={item} className="text-center text-danger lead">
+                {item}
+              </p>
+            ))}
           </div>
         </div>
       </div>
