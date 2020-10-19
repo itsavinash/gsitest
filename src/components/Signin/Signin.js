@@ -28,7 +28,7 @@ export default class Signin extends Component {
   onSignInHandler = () => {
     this.setState({ isLoading: true });
     axios
-      .post("http://localhost:8000/api/auth/login", {
+      .post("/api/auth/login", {
         email: this.state.email,
         password: this.state.password,
       })
